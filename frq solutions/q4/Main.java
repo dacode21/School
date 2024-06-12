@@ -1,28 +1,42 @@
-public Location getNameLoc(int row int col){
-  int rowBelow = row + 1;
-  int colRight = col + 1;
-  if(rowBelow < grid.length && colRight < grid[0].length){
-    if(grid[rowBelow][col] < grid[row][colRight]){
-      return new Location(rowBelow, col);
+public class GridPath {
+  private int[][] grid;
+
+  public GridPath(int[][] grid) {
+    this.grid = grid;
+  }
+
+  
+  public Location getNextLoc(int row, int col) {
+    
+    if(row == grid.length-1){
+      return new Location(row,col+1);
+    }
+    else if(col == grid[row].length-1){
+      return new Location(row+1,col);
     }
     else{
-      return newLocation(row, colright);
+      int min = grid[row+1][col];
+        if(min >= grid[row][col+1]){
+            return new Location(row, col+1);
+          }
+        return new Location(row+1, col);
+      }
+  } 
+  public int sumPath(int row, int col) {
+    int sum = grid[row][col];  
+      
+    while(row != grid.length-1 || col != grid[row].length-1){
+       Location nextLoc  = getNextLoc(row, col);
+        row = nextLoc.getRow();
+        col = nextLoc.getCol();
+        sum += grid[row][col];
+      }
+    
+    return sum;
     }
-    else if(rowBlelow < grid.length){
-    return new Location(rowBelow, col);
+  public String toString() {
+    return Arrays.deepToString(grid);
   }
-  else{
-    return new Location(row,col);
-  }
-}
-public int sumPath(int row, int col){
-  int sum = grind[row][col];
-  while(row != grid.length -1 && col != grid[0].length-1){
-    Location nextGrid = getNextLoc(row,col);
-    row = nextGrid.getRow();
-    col = nextGrid.getCol();
-    sum += grid[row][col];
-  }
-  return sum;
+  
 }
 
