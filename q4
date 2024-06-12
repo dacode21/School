@@ -6,7 +6,7 @@ public class GridPath {
     this.grid = grid;
   }
 
-  // PART A (uncomment first)
+  
   public Location getNextLoc(int row, int col) {
     
     if(row == grid.length-1){
@@ -22,10 +22,7 @@ public class GridPath {
           }
         return new Location(row+1, col);
       }
-  }
-
-  
-  // PART B
+  } 
   public int sumPath(int row, int col) {
     int sum = grid[row][col];  
       
@@ -38,10 +35,6 @@ public class GridPath {
     
     return sum;
     }
-
-    
-
-  // added to see the array on screen 
   public String toString() {
     return Arrays.deepToString(grid);
   }
